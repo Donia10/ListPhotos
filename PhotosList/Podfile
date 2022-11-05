@@ -9,6 +9,6 @@ target 'PhotosList' do
     pod 'RxSwift'
     pod 'RxCocoa'
     pod 'Alamofire'
-
+    pod 'SDWebImage'
 
 end
