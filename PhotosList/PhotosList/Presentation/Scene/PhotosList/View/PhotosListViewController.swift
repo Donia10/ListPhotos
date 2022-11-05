@@ -11,7 +11,11 @@ import RxSwift
 class PhotosListViewController: UIViewController {
 
     @IBOutlet private weak var photosCollectioniew: UICollectionView!
-    private var photosList:[Photo]?
+    
+    @IBOutlet private weak var loadingMoreIndicatorView: UIActivityIndicatorView!
+    
+    @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
+    private var photosList = [Photo]()
      var photosViewModel = PhotosViewModel()
     var startPaging:Int = 0
     var disposebag:DisposeBag = DisposeBag()
@@ -25,18 +29,35 @@ class PhotosListViewController: UIViewController {
         photosCollectioniew.dataSource = self
 
         title = "Photo List"
+        loadingIndicatorView.isHidden = false
         photosViewModel.getPhotos(start: startPaging)
-        photosViewModel.getPhotosList.subscribe(onNext: { [weak self] photos in
-            
-            self?.photosList = photos
-            self?.photosCollectioniew.reloadData()
-            
-        }).disposed(by: disposebag)
+        subscibeToRespose()
     }
     func registerNib() {
         
         photosCollectioniew.register(UINib(nibName: "PhotoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PhotoCollectionViewCell")
         
+    }
+    
+    func subscibeToRespose(){
+        
+        photosViewModel.getPhotosList.subscribe(onNext: { [weak self] photos in
+            print("subscibeToRespose products \(photos.count), \(self?.photosList.count)")
+
+            self?.loadingIndicatorView.isHidden = true
+            self?.loadingMoreIndicatorView.isHidden = true
+
+            if photos.count > 0{
+//                for photo in photos {
+//                    self?.photosList.append(photo)
+//                    }
+            self?.photosList.append(contentsOf: photos)
+//            self?.photosList = photos
+
+            self?.photosCollectioniew.reloadData()
+            }
+            
+        }).disposed(by: disposebag)
     }
 
 }
@@ -44,21 +65,28 @@ class PhotosListViewController: UIViewController {
 extension PhotosListViewController :UICollectionViewDelegate ,UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return  photosList?.count ?? 7
+        return  photosList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionViewCell", for: indexPath as IndexPath) as? PhotoCollectionViewCell {
             
-            if let photosList = photosList {
+          
                 cell.photoCell = self.photosViewModel.getPhotoCell(from: photosList[indexPath.row] )
           
-            }
                       
             return cell
         }
         return UICollectionViewCell()
         
+    }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        if (indexPath.row == (photosList.count ) - 1){
+            startPaging = startPaging + 10
+            loadingMoreIndicatorView.isHidden = false
+            photosViewModel.getPhotos(start: startPaging)
+        }
     }
 
    

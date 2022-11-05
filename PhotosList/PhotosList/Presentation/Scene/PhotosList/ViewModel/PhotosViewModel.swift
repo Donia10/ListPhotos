@@ -32,7 +32,7 @@ class PhotosViewModel:PhotosViewModelProtocol {
     }
     
     func getPhotos(start: Int? = 0 ){
-        
+        print("getPhotos vm ")
         fetchPhotosUseCase?.getPhotos(start: start, limit: 10, completion: {
             [weak self](response) in
             
@@ -41,6 +41,7 @@ class PhotosViewModel:PhotosViewModelProtocol {
                 print(error)
             case .success(let photos):
                 guard let photos = photos else { return }
+                print("getPhotos vm \(photos.count)")
                 self?.photos.onNext(photos)
             }
             

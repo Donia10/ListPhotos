@@ -21,7 +21,7 @@ class NetworkService: NetworkServiceProtocol  {
 
                           case .failure(let error):
 
-                              print(error)
+                          print(error)
                           completion(.failure(error))
                       }
                   }

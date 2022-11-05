@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="unP-uw-IiW">
-                                <rect key="frame" x="10" y="54" width="394" height="798"/>
+                                <rect key="frame" x="10" y="94" width="394" height="758"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="G9b-Tv-FWH">
                                     <size key="itemSize" width="128" height="128"/>
@@ -37,17 +37,37 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="XmG-kP-NNd" userLabel="LoadingMoreIndicatorView">
+                                <rect key="frame" x="197" y="842" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="GY4-X1-4TZ"/>
+                                    <constraint firstAttribute="height" constant="20" id="ZGv-NJ-t2m"/>
+                                    <constraint firstAttribute="width" secondItem="XmG-kP-NNd" secondAttribute="height" multiplier="1:1" id="tuZ-TI-Sw0"/>
+                                </constraints>
+                                <color key="color" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="fP8-SS-0q7">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                                <color key="color" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="unP-uw-IiW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="398-WE-eym"/>
+                            <constraint firstItem="fP8-SS-0q7" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="J9b-v2-Wmc"/>
+                            <constraint firstItem="XmG-kP-NNd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KaW-P7-2qv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="unP-uw-IiW" secondAttribute="trailing" constant="10" id="Ufv-IZ-1cY"/>
+                            <constraint firstItem="fP8-SS-0q7" firstAttribute="width" secondItem="fP8-SS-0q7" secondAttribute="height" multiplier="1:1" id="WoF-Ds-56o"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="unP-uw-IiW" secondAttribute="bottom" constant="10" id="eDA-ae-NeP"/>
-                            <constraint firstItem="unP-uw-IiW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="gOp-5d-CL8"/>
+                            <constraint firstItem="unP-uw-IiW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="gOp-5d-CL8"/>
+                            <constraint firstItem="fP8-SS-0q7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tIA-MK-fLK"/>
+                            <constraint firstItem="XmG-kP-NNd" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="w9R-eY-G3k"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loadingIndicatorView" destination="fP8-SS-0q7" id="ybd-w7-Qml"/>
+                        <outlet property="loadingMoreIndicatorView" destination="XmG-kP-NNd" id="9aJ-jY-arl"/>
                         <outlet property="photosCollectioniew" destination="unP-uw-IiW" id="tRd-e8-T3t"/>
                     </connections>
                 </viewController>
