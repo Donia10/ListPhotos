@@ -27,7 +27,6 @@ class PhotosListViewController: UIViewController {
         registerNib()
         photosCollectioniew.delegate = self
         photosCollectioniew.dataSource = self
-
         title = "Photo List"
         loadingIndicatorView.isHidden = false
         photosViewModel.getPhotos(start: startPaging)
@@ -42,17 +41,13 @@ class PhotosListViewController: UIViewController {
     func subscibeToRespose(){
         
         photosViewModel.getPhotosList.subscribe(onNext: { [weak self] photos in
-            print("subscibeToRespose products \(photos.count), \(self?.photosList.count)")
 
             self?.loadingIndicatorView.isHidden = true
             self?.loadingMoreIndicatorView.isHidden = true
 
             if photos.count > 0{
-//                for photo in photos {
-//                    self?.photosList.append(photo)
-//                    }
             self?.photosList.append(contentsOf: photos)
-//            self?.photosList = photos
+//                print("subscibeToRespose products \(photos.count), \(self?.photosList.count)")
 
             self?.photosCollectioniew.reloadData()
             }
@@ -70,8 +65,7 @@ extension PhotosListViewController :UICollectionViewDelegate ,UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionViewCell", for: indexPath as IndexPath) as? PhotoCollectionViewCell {
-            
-          
+        
                 cell.photoCell = self.photosViewModel.getPhotoCell(from: photosList[indexPath.row] )
           
                       
@@ -81,7 +75,7 @@ extension PhotosListViewController :UICollectionViewDelegate ,UICollectionViewDa
         
     }
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
+        loadingMoreIndicatorView.isHidden = true
         if (indexPath.row == (photosList.count ) - 1){
             startPaging = startPaging + 10
             loadingMoreIndicatorView.isHidden = false
