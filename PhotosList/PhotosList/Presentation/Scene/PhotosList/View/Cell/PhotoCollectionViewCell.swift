@@ -20,7 +20,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         didSet{
             guard let imageUrl = URL(string: photoCell?.imageUrl ?? "") else {return  }
             
-            self.photoImageView.setImage(from: imageUrl, withPlaceholder: UIImage(named:""))
+            self.photoImageView.setImage(from: imageUrl)
             self.titleLabel.text = photoCell?.title ?? ""
         }
     }

@@ -16,8 +16,8 @@ class PhotosListViewController: UIViewController {
     
     @IBOutlet weak var loadingIndicatorView: UIActivityIndicatorView!
     private var photosList = [Photo]()
-     var photosViewModel = PhotosViewModel()
-    var startPaging:Int = 0
+    var photosViewModel = PhotosViewModel()
+    private var startPaging:Int = 0
     var disposebag:DisposeBag = DisposeBag()
 
     
@@ -28,8 +28,7 @@ class PhotosListViewController: UIViewController {
         photosCollectioniew.delegate = self
         photosCollectioniew.dataSource = self
         title = "Photo List"
-        loadingIndicatorView.isHidden = false
-        photosViewModel.getPhotos(start: startPaging)
+        getPhotos()
         subscibeToRespose()
     }
     func registerNib() {
@@ -37,9 +36,11 @@ class PhotosListViewController: UIViewController {
         photosCollectioniew.register(UINib(nibName: "PhotoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "PhotoCollectionViewCell")
         
     }
-    
+    func getPhotos(){
+        loadingIndicatorView.isHidden = false
+        photosViewModel.getPhotos(start: startPaging)
+    }
     func subscibeToRespose(){
-        
         photosViewModel.getPhotosList.subscribe(onNext: { [weak self] photos in
 
             self?.loadingIndicatorView.isHidden = true
@@ -47,8 +48,6 @@ class PhotosListViewController: UIViewController {
 
             if photos.count > 0{
             self?.photosList.append(contentsOf: photos)
-//                print("subscibeToRespose products \(photos.count), \(self?.photosList.count)")
-
             self?.photosCollectioniew.reloadData()
             }
             
@@ -65,8 +64,7 @@ extension PhotosListViewController :UICollectionViewDelegate ,UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionViewCell", for: indexPath as IndexPath) as? PhotoCollectionViewCell {
-        
-                cell.photoCell = self.photosViewModel.getPhotoCell(from: photosList[indexPath.row] )
+            cell.photoCell = self.photosViewModel.getPhotoCell(from: photosList[indexPath.row] )
             cell.naigateToPhoto =  {
                 print("img \(self.photosList[indexPath.row].thumbnailUrl ?? "")")
                 print("url \(self.photosList[indexPath.row].url ?? "")")

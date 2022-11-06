@@ -175,8 +175,6 @@
 		DC703D082915DB09006EC48E /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				DCC40B61291720990065377C /* PhotoDetails */,
-				DC703CF42915D64F006EC48E /* Main.storyboard */,
 				DC703D0A2915DB3C006EC48E /* PhotosList */,
 			);
 			path = Scene;
@@ -204,6 +202,8 @@
 			children = (
 				DC703D152915E64B006EC48E /* Cell */,
 				DC703CF22915D64F006EC48E /* PhotosListViewController.swift */,
+				DCC40B6229172BA00065377C /* PhotoViewController.swift */,
+				DC703CF42915D64F006EC48E /* Main.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -291,14 +291,6 @@
 				DC703D182915E6A3006EC48E /* PhotoCollectionViewCell.swift */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		DCC40B61291720990065377C /* PhotoDetails */ = {
-			isa = PBXGroup;
-			children = (
-				DCC40B6229172BA00065377C /* PhotoViewController.swift */,
-			);
-			path = PhotoDetails;
 			sourceTree = "<group>";
 		};
 		DCCE9B4D2916D4C0006EF946 /* Extensions */ = {
