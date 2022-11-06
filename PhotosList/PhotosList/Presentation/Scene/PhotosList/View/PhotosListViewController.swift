@@ -67,7 +67,17 @@ extension PhotosListViewController :UICollectionViewDelegate ,UICollectionViewDa
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCollectionViewCell", for: indexPath as IndexPath) as? PhotoCollectionViewCell {
         
                 cell.photoCell = self.photosViewModel.getPhotoCell(from: photosList[indexPath.row] )
-          
+            cell.naigateToPhoto =  {
+                print("img \(self.photosList[indexPath.row].thumbnailUrl ?? "")")
+                print("url \(self.photosList[indexPath.row].url ?? "")")
+
+                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "PhotoViewController") as? PhotoViewController {
+                    vc.imageURL = self.photosList[indexPath.row].url ?? ""
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true, completion: nil)
+                }
+                
+            }
                       
             return cell
         }
@@ -82,6 +92,8 @@ extension PhotosListViewController :UICollectionViewDelegate ,UICollectionViewDa
             photosViewModel.getPhotos(start: startPaging)
         }
     }
+    
+    
 
    
 }

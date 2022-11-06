@@ -26,6 +26,7 @@
 		DC703D172915E68E006EC48E /* PhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC703D162915E68E006EC48E /* PhotoCollectionViewCell.xib */; };
 		DC703D192915E6A3006EC48E /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC703D182915E6A3006EC48E /* PhotoCollectionViewCell.swift */; };
 		DC703D1B2915ECEE006EC48E /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC703D1A2915ECEE006EC48E /* Photo.swift */; };
+		DCC40B6329172BA00065377C /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC40B6229172BA00065377C /* PhotoViewController.swift */; };
 		DCCE9B4F2916D4D6006EF946 /* ExtensionUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCE9B4E2916D4D6006EF946 /* ExtensionUIImageView.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		DC703D162915E68E006EC48E /* PhotoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoCollectionViewCell.xib; sourceTree = "<group>"; };
 		DC703D182915E6A3006EC48E /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		DC703D1A2915ECEE006EC48E /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		DCC40B6229172BA00065377C /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		DCCE9B4E2916D4D6006EF946 /* ExtensionUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIImageView.swift; sourceTree = "<group>"; };
 		EE67E71B69D3DEF0D844DBB6 /* Pods-PhotosList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotosList.debug.xcconfig"; path = "Target Support Files/Pods-PhotosList/Pods-PhotosList.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -173,6 +175,8 @@
 		DC703D082915DB09006EC48E /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				DCC40B61291720990065377C /* PhotoDetails */,
+				DC703CF42915D64F006EC48E /* Main.storyboard */,
 				DC703D0A2915DB3C006EC48E /* PhotosList */,
 			);
 			path = Scene;
@@ -200,7 +204,6 @@
 			children = (
 				DC703D152915E64B006EC48E /* Cell */,
 				DC703CF22915D64F006EC48E /* PhotosListViewController.swift */,
-				DC703CF42915D64F006EC48E /* Main.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -288,6 +291,14 @@
 				DC703D182915E6A3006EC48E /* PhotoCollectionViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		DCC40B61291720990065377C /* PhotoDetails */ = {
+			isa = PBXGroup;
+			children = (
+				DCC40B6229172BA00065377C /* PhotoViewController.swift */,
+			);
+			path = PhotoDetails;
 			sourceTree = "<group>";
 		};
 		DCCE9B4D2916D4C0006EF946 /* Extensions */ = {
@@ -427,6 +438,7 @@
 				DCCE9B4F2916D4D6006EF946 /* ExtensionUIImageView.swift in Sources */,
 				DC703CF32915D64F006EC48E /* PhotosListViewController.swift in Sources */,
 				DC703CEF2915D64F006EC48E /* AppDelegate.swift in Sources */,
+				DCC40B6329172BA00065377C /* PhotoViewController.swift in Sources */,
 				DC703CF12915D64F006EC48E /* SceneDelegate.swift in Sources */,
 				DC3831CD2916852A002705C8 /* Network.swift in Sources */,
 			);

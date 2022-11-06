@@ -6,7 +6,8 @@
 //
 
 import UIKit
-
+import RxSwift
+import RxCocoa
 class PhotoCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet  private weak var containerView: UIView!
@@ -24,10 +25,29 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    var naigateToPhoto:(()->()) = {}
     override func awakeFromNib() {
         super.awakeFromNib()
-      
-        titleLabel.text = "photo List"
+        photoImageView.isUserInteractionEnabled = true
+    
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapImageView(_:)))
+
+        photoImageView.addGestureRecognizer(tapGestureRecognizer)
+            
+         
+        
+    }
+   
+    @objc private func didTapImageView(_ sender: UITapGestureRecognizer) {
+        print("did tap image view")
+        naigateToPhoto()
+//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//        if let vc = storyBoard.instantiateViewController(withIdentifier: "PhotoViewController") as? PhotoViewController {
+//           // vc.images = [item?.profileImg ?? ""]
+//            // self.navigationController?.pushViewController(vc, animated: true)
+//            vc.modalPresentationStyle = .overFullScreen
+        
     }
     
 }
